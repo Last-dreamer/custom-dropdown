@@ -22,6 +22,7 @@ class _DropdownOverlay extends StatefulWidget {
   final bool? excludeSelected;
   final bool? hideSelectedFieldWhenOpen;
   final bool? canCloseOutsideBounds;
+  final Color scrollbarThumbColor;
   final _SearchType? searchType;
   final Future<List<String>> Function(String)? futureRequest;
   final Duration? futureRequestDelay;
@@ -36,6 +37,7 @@ class _DropdownOverlay extends StatefulWidget {
     required this.layerLink,
     required this.hideOverlay,
     required this.hintText,
+    required this.scrollbarThumbColor,
     this.headerStyle,
     this.listItemStyle,
     this.excludeSelected,
@@ -141,6 +143,7 @@ class _DropdownOverlayState extends State<_DropdownOverlay> {
             padding: listPadding,
             headerText: headerText,
             itemTextStyle: widget.listItemStyle,
+            scrollbarThumbColor: widget.scrollbarThumbColor,
             onItemSelect: (value) {
               if (headerText != value) {
                 widget.controller.text = value;

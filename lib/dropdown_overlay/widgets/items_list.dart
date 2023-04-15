@@ -8,6 +8,7 @@ class _ItemsList extends StatelessWidget {
   final ValueSetter<String> onItemSelect;
   final EdgeInsets padding;
   final TextStyle? itemTextStyle;
+  final Color scrollbarThumbColor;
   final _ListItemBuilder listItemBuilder;
 
   const _ItemsList({
@@ -19,34 +20,39 @@ class _ItemsList extends StatelessWidget {
     required this.onItemSelect,
     required this.listItemBuilder,
     required this.padding,
+    required this.scrollbarThumbColor,
     this.itemTextStyle,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      controller: scrollController,
-      child: ListView.builder(
+    return ScrollbarTheme(
+      data: ScrollbarThemeData(
+          thumbColor: MaterialStateProperty.all(scrollbarThumbColor)),
+      child: Scrollbar(
         controller: scrollController,
-        shrinkWrap: true,
-        padding: padding,
-        itemCount: items.length,
-        itemBuilder: (_, index) {
-          final selected = !excludeSelected && headerText == items[index];
-          return Material(
-            color: Colors.transparent,
-            child: InkWell(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.grey[200],
-              onTap: () => onItemSelect(items[index]),
-              child: Container(
-                color: selected ? Colors.grey[100] : Colors.transparent,
-                padding: _listItemPadding,
-                child: listItemBuilder(context, items[index]),
+        child: ListView.builder(
+          controller: scrollController,
+          shrinkWrap: true,
+          padding: padding,
+          itemCount: items.length,
+          itemBuilder: (_, index) {
+            final selected = !excludeSelected && headerText == items[index];
+            return Material(
+              color: Colors.transparent,
+              child: InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.grey[200],
+                onTap: () => onItemSelect(items[index]),
+                child: Container(
+                  color: selected ? Colors.grey[100] : Colors.transparent,
+                  padding: _listItemPadding,
+                  child: listItemBuilder(context, items[index]),
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

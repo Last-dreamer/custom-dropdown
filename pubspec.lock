@@ -177,5 +177,9 @@ packages:
     source: hosted
     version: "2.1.4"
 sdks:
+<<<<<<< HEAD
   dart: ">=2.18.0 <3.0.0"
+=======
+  dart: ">=2.18.0 <4.0.0"
+>>>>>>> 53e19fd (add a scrollbar thumb color)
   flutter: ">=1.17.0"

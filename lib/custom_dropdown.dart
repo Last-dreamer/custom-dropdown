@@ -40,6 +40,7 @@ class CustomDropdown extends StatefulWidget {
   final Color? fillColor;
   final bool? canCloseOutsideBounds;
   final bool? hideSelectedFieldWhenOpen;
+  final Color scrollbarThumbColor;
   final Future<List<String>> Function(String)? futureRequest;
 
   //duration after which the 'futureRequest' is to be executed
@@ -68,6 +69,7 @@ class CustomDropdown extends StatefulWidget {
     this.fieldSuffixIcon,
     this.onChanged,
     this.excludeSelected = true,
+    this.scrollbarThumbColor = Colors.grey,
     this.fillColor = Colors.white,
   })  : assert(items!.isNotEmpty, 'Items list must contain at least one item.'),
         assert(
@@ -103,6 +105,7 @@ class CustomDropdown extends StatefulWidget {
     this.borderSide,
     this.fieldSuffixIcon,
     this.onChanged,
+    this.scrollbarThumbColor = Colors.grey,
     this.excludeSelected = true,
     this.canCloseOutsideBounds = true,
     this.hideSelectedFieldWhenOpen = false,
@@ -141,6 +144,7 @@ class CustomDropdown extends StatefulWidget {
     this.borderSide,
     this.fieldSuffixIcon,
     this.onChanged,
+    this.scrollbarThumbColor = Colors.grey,
     this.excludeSelected = true,
     this.canCloseOutsideBounds = true,
     this.hideSelectedFieldWhenOpen = false,
@@ -198,6 +202,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
           futureRequest: widget.futureRequest,
           futureRequestDelay: widget.futureRequestDelay,
           hideSelectedFieldWhenOpen: widget.hideSelectedFieldWhenOpen,
+          scrollbarThumbColor: widget.scrollbarThumbColor,
         );
       },
       child: (showCallback) {
